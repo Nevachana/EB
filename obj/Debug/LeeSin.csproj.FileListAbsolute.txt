@@ -1,0 +1,10 @@
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\LeeSin.exe.config
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\LeeSin.exe
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\LeeSin.pdb
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\EloBuddy.dll
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\EloBuddy.SDK.dll
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\SharpDX.dll
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\SharpDX.Direct3D9.dll
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\bin\Debug\Newtonsoft.Json.dll
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\obj\Debug\LeeSin.exe
+c:\users\nevachana\documents\visual studio 2013\Projects\LeeSin\LeeSin\obj\Debug\LeeSin.pdb
