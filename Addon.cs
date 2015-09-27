@@ -32,10 +32,11 @@ namespace LeeSin
 
 
         private Menu myMenu;
-        private Menu comboMenu, smiteMenu, insecMenu, menuJungle;
+        private Menu comboMenu, smiteMenu, insecMenu, menuJungle,draws;
         private int[] smiteDMG = new int[]{390, 410, 430, 450, 480, 510, 540, 570, 600, 640, 680, 720, 760, 800, 850, 900, 950, 1000};
         private int actualLevel = 1;
         private int smiteDmg = 390;
+
         public void start(EventArgs args)
         {
             setUp_Menu();
@@ -45,7 +46,7 @@ namespace LeeSin
         public void setUp_Menu()
         {
 
-            string currentVersion = "0.8";
+            string currentVersion = "0.85";
             Chat.Print("LeeSin2 - Neva Series LOADED.");
             Chat.Print("Checking version..");
             if (new WebClient().DownloadString("http://pastebin.com/raw.php?i=WeD1mMzH") != currentVersion)
@@ -61,7 +62,7 @@ namespace LeeSin
             myMenu.AddLabel("  V for jungleCLear. ");
             myMenu.AddLabel("  Z for laneleCLear. ");
 
-            myMenu.AddLabel(" More coming soon.. Actual version: 0.8");
+            myMenu.AddLabel(" More coming soon.. Actual version: 0.85");
 
            comboMenu =myMenu.AddSubMenu("Combo settings","comboSection");
            comboMenu.AddGroupLabel("Configuration");
@@ -89,15 +90,50 @@ namespace LeeSin
             menuJungle.Add("jungle.Q", new CheckBox("Use Q"));
             menuJungle.Add("jungle.W", new CheckBox("Use W"));
             menuJungle.Add("jungle.E", new CheckBox("Use E"));
-           
+
+            draws = myMenu.AddSubMenu("Drawing settings", "drawinsSection");
+            draws.AddGroupLabel("Drawins settings");
+            draws.AddSeparator();
+            draws.Add("draw.Q", new CheckBox("Draw Q range"));
+            draws.Add("draw.W", new CheckBox("Draw W range"));
+            draws.Add("draw.R", new CheckBox("Draw R range"));
+            draws.Add("draw.target", new CheckBox("Draw current Target"));
            Game.OnTick += actives;
            Game.OnUpdate += gameUpdate;
+           Drawing.OnDraw += onDraw;
         }
         //public int[] qDmg = new int[] { 0, 200 + (int)(ObjectManager.Player.BaseAttackDamage / 0.9), 400 + (int)(ObjectManager.Player.BaseAttackDamage / 0.9), 600 + (int)(ObjectManager.Player.BaseAttackDamage / 0.9) };
         //public void qKs(EventArgs args)
         //{            
            
         //}
+        public void onDraw(EventArgs args)
+        {
+            Boolean drawQ = draws["draw.Q"].Cast<CheckBox>().CurrentValue;
+            Boolean drawW = draws["draw.W"].Cast<CheckBox>().CurrentValue;
+            Boolean drawR = draws["draw.R"].Cast<CheckBox>().CurrentValue;
+            Boolean drawTarget = draws["draw.target"].Cast<CheckBox>().CurrentValue;
+            if (drawQ)
+            {
+                Circle.Draw(Color.Green, Q.Range, ObjectManager.Player.Position);
+
+
+            }
+            if (drawW)
+            {
+                Circle.Draw(Color.Green, W.Range, ObjectManager.Player.Position);
+            }
+            if (drawR)
+            {
+
+                Circle.Draw(Color.Green, R.Range, ObjectManager.Player.Position);
+                if (drawTarget)
+                {
+                    Circle.Draw(Color.Red, ObjectManager.Player.AttackRange, myTarget.Position);
+                }
+
+            }
+        }
         public void setUp_spells()
         {
             //                               skill , range ,             type ,       delayC ,      speed      , radius
@@ -227,6 +263,7 @@ namespace LeeSin
         {
             Boolean useFlash = insecMenu["insec.Flash"].Cast<CheckBox>().CurrentValue;
             var target = TargetSelector.GetTarget((Q.IsReady()) ? Q.Range :1 , DamageType.Physical);
+            myTarget = target;
                 if (W.IsInRange(target.Position) && W.IsReady() && !hasStarted)
                 {
                     if (wCasted == false)
@@ -374,7 +411,7 @@ namespace LeeSin
             Boolean useE = comboMenu["combo.E"].Cast<CheckBox>().CurrentValue;
             Boolean rKs = comboMenu["ks.R"].Cast<CheckBox>().CurrentValue;
             var target = TargetSelector.GetTarget((useQ && Q.IsReady()) ? Q.Range : (R.Range + 100), DamageType.Physical);
-
+            myTarget = target;
             if (E.IsReady() && E.IsInRange(target) && useE)
             {
                 E.Cast();

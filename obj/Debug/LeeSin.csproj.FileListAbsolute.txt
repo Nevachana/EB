@@ -20,3 +20,5 @@ C:\Users\Nevachana\AppData\Local\GitHub\TutorialRepository_fdbf2020839cde135ff9d
 C:\Users\Nevachana\Desktop\EB\bin\Debug\LeeSin.exe.config
 C:\Users\Nevachana\Desktop\EB\obj\Debug\LeeSin.exe
 C:\Users\Nevachana\Desktop\EB\obj\Debug\LeeSin.pdb
+C:\Users\Nevachana\Desktop\EB\bin\Debug\LeeSin.exe
+C:\Users\Nevachana\Desktop\EB\bin\Debug\LeeSin.pdb
